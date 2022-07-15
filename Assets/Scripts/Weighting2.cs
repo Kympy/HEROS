@@ -240,7 +240,7 @@ public class Weighting2 : AI_BASE //카드 종류 변경으로 쓸데없이 꼬�
         }
 
     }
-
+    
     float NowCtrlnum() //현재 장악도 계산
     {
         float ctrlNum = 0;
