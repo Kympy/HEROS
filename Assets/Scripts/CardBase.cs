@@ -88,7 +88,7 @@ public class CardBase : MonoBehaviour
 
         if (GameManager.nowTurn == 1) // 플레이어 턴
         {
-            if (GameObject.Find("EventSystem").GetComponent<Weighting2>().pMinionCount() == 0)
+            if (GameObject.Find("EventSystem").GetComponent<Weighting2>().pMinionCount() == 0) // 대상이 없다면
             {
                 Debug.Log("Minion is Null");
                 tips.text = ("버프를 적용할 Minion이 존재하지 않습니다.");
@@ -101,7 +101,7 @@ public class CardBase : MonoBehaviour
 
                 if (GameManager.pMinion[1].childCount == 1)
                 {
-                    GameManager.pMinion[1].GetComponentInChildren<MinionBase>().attack += m_AttackBuff;
+                    GameManager.pMinion[1].GetComponentInChildren<MinionBase>().attack += m_AttackBuff; // 공격력 상승
                 }
                 if (GameManager.pMinion[2].childCount == 1)
                 {
@@ -329,27 +329,27 @@ public class CardBase : MonoBehaviour
     // 하수인 소환
     public void Summon(int num)
     {
-        tips = GameObject.Find("Tips").GetComponent<Text>();
+        tips = GameObject.Find("Tips").GetComponent<Text>(); // 팁 가져오기
         Debug.Log("Summon Clicked");
 
         int temp1 = 0;
         int temp2 = 0;
 
-        for (int q = 1; q < 4; q++)
+        for (int q = 1; q < 4; q++) // 최대 3 마리 소환가능
         {
-            if (GameManager.eMinion[q].childCount != 0)
+            if (GameManager.eMinion[q].childCount != 0) // 적 소환수가 하나라도 있다면
                 temp1++;
 
-            if (GameManager.pMinion[q].childCount != 0)
+            if (GameManager.pMinion[q].childCount != 0) // 플레이어 소환수가 하나라도 있다면
                 temp2++;
         }
 
-        ecnt = temp1;
-        pcnt = temp2;
+        ecnt = temp1; // 적 소환수 갯수
+        pcnt = temp2; // 플레이어 소환수 갯수
 
         Debug.Log("Top pcnt: " + pcnt + " / ecnt: " + ecnt);
 
-        switch (num)
+        switch (num) // 소환 카드로부터 num 을 받아 알맞은 소환수를 생성
         {
             case 1:
                 {
@@ -380,18 +380,18 @@ public class CardBase : MonoBehaviour
         {
             new Vector3(-15f, 0.5f, -2f);
 
-            if (pcnt == 3)
+            if (pcnt == 3) // 소환수가 3명이라면 소환 불가
             {
                 Debug.Log("Minion is Full");
                 tips.text = ("Minion이 가득 찼습니다");
                 GameManager.useCount = 1;
             }
 
-            else
+            else // 소환 가능하다면
             {
                 for (int i = 1; i < 4; i++)
                 {
-                    if (GameManager.pMinion[i].childCount == 0)
+                    if (GameManager.pMinion[i].childCount == 0) // 빈자리를 찾아 소환
                     {
                         GameObject temp = Instantiate(tempMinion, GameManager.pMinion[i].position, Quaternion.Euler(0f, 90f, 0f));
                         temp.transform.parent = GameManager.pMinion[i];
@@ -402,10 +402,10 @@ public class CardBase : MonoBehaviour
                     }
                 }
 
-                DestroyCard();        // 카드 삭제
+                DestroyCard();        // 사용한 카드 삭제
             }
         }
-        else if (GameManager.nowTurn == 2) // 적 턴
+        else if (GameManager.nowTurn == 2) // 적 턴이라면
         {
             if (ecnt == 3)
             {
@@ -430,7 +430,7 @@ public class CardBase : MonoBehaviour
 
                 }
             }
-            DestroyEnemyCard();
+            DestroyEnemyCard(); // 적 카드 삭제
         }
 
 

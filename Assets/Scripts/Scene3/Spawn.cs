@@ -12,8 +12,8 @@ public class Spawn : MonoBehaviour
     public GameObject E_Bessie;
     public GameObject E_Colin;
 
-    public Transform spawnPointA;
-    public Transform spawnPointB;
+    public Transform spawnPointA; // 플레이어 스폰 위치
+    public Transform spawnPointB; // 적 스폰 위치
 
     private Text name1;
     private Text name2;
@@ -23,10 +23,10 @@ public class Spawn : MonoBehaviour
         name1 = GameObject.Find("Player1Name").GetComponent<Text>();
         name2 = GameObject.Find("Player2Name").GetComponent<Text>();
 
-        if (ButtonControl.player1 == 1)
+        if (ButtonControl.player1 == 1) // 선택했던 캐릭터의 코드
         {
-            Instantiate(Amos, spawnPointA);
-            name1.text = "Amos";
+            Instantiate(Amos, spawnPointA); // 생성 부분
+            name1.text = "Amos"; // 이름 표시
         }
         else if(ButtonControl.player1 == 2)
         {

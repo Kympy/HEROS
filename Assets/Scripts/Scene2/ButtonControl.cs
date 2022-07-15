@@ -124,20 +124,20 @@ public class ButtonControl : MonoBehaviour // 캐릭터 선택화면 버튼 컨�
         explanation.text = "Colin 은 밸런스형 캐릭터로 소환수를 다루는 것이 특징이다. 공격이나 방어가 우수하지는 않지만 " +
             "플레이어를 보호하는 방패병을 소환하여 게임을 안정적으로 이끌어 간다.";
     }
-    public void StartGame()
+    public void StartGame() // 게임 시작
     {
-        if (player1 != 0 && player2 != 0)
+        if (player1 != 0 && player2 != 0) // 캐릭터가 정상적으로 선택되었다면
         {
             SceneManager.LoadScene(2);
         }
         else explanation.text = "게임을 플레이 하기 위해 최소 1명의 캐릭터를 선택하세요.";
     }
-    public void CustomMode()
+    public void CustomMode() // 커스텀 선택 모드
     {
         isCustom = true;
         Debug.Log(isCustom);
     }
-    public void ResetCustom()
+    public void ResetCustom() // 선택 초기화
     {
         player1 = 0;
         player2 = 0;
